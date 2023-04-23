@@ -1,0 +1,379 @@
+{
+  "info": {
+    "_postman_id": "cbefe841-5eea-4e6e-9336-949a9edf5629",
+    "name": "PostService APIs",
+    "description": "This collection contains few **secured API**. You will have to pass a bearer token. To generate token follow these steps:\n\n- Go to **Auth** folder and choose **login** API\n- Enter your **username** and **password**\n- If your user is not created then create a User with the help of **Create User** API.\n- Repeat the step 1 and 2\n- Copy the token and use it as **Bearer Token**\n    \n\n**Protected APIs** list\n\n1. Create Post\n2. Update Post\n3. Delete Post\n4. Add Comment\n5. Delete Comment\n6. Get User by name\n7. Get Post Count By Tag",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16203650"
+  },
+  "item": [
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Create a Post",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWVlcnNhZ2FyIiwic3ViIjoiNjQ0NGQxOGQ3M2NmZDg5YzlkNzQwNmJmIiwiaWF0IjoxNjgyMjMyMTk1fQ.a-qLJZx37TtYVlLBLAFFnrc4hLQ3mCgLH3Az-rM26wY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": ""
+                },
+                {
+                  "key": "title",
+                  "value": "TestPost5",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "this is testing 5.",
+                  "type": "text"
+                },
+                {
+                  "key": "tags",
+                  "value": "[\"test8\"]",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/post",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post"]
+            },
+            "description": "This is a **secured API**. You will have to pass a bearer token. To generate token follow these steps:\n\n1. Go to **Auth** folder and choose **login** API\n2. Enter your **username** and **password**\n3. If your user is not created then create a User with the help of **Create User** API.\n4. Repeat the step 1 and 2\n5. Copy the token and use it as **Bearer Token**"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a post",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWVlcnNhZ2FyIiwic3ViIjoiNjQ0NGQxOGQ3M2NmZDg5YzlkNzQwNmJmIiwiaWF0IjoxNjgyMjMyMTk1fQ.a-qLJZx37TtYVlLBLAFFnrc4hLQ3mCgLH3Az-rM26wY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"TestingPost0\",\n    \"description\": \"this is tetsing 0\",\n    \"tags\": [\"test6\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/644518e2c3107c7e9385692c",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "644518e2c3107c7e9385692c"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find By Title",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/TestPost4",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "TestPost4"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch all posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Posts",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Testpost4\",\n    \"tags\": [\"test7\"],\n    \"createdBy\": \"sameer\",\n    \"startDate\": \"2023-04-22T12:03:13.000Z\",\n    \"endDate\": \"2023-04-23T12:03:13.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/filter",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "filter"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete by Ids",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWVlcnNhZ2FyIiwic3ViIjoiNjQ0NGQxOGQ3M2NmZDg5YzlkNzQwNmJmIiwiaWF0IjoxNjgyMjMyMTk1fQ.a-qLJZx37TtYVlLBLAFFnrc4hLQ3mCgLH3Az-rM26wY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n    \"644524138eb80cc6afc903f0\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/delete/ids",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "delete", "ids"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWVlcnNhZ2FyIiwic3ViIjoiNjQ0NGQxOGQ3M2NmZDg5YzlkNzQwNmJmIiwiaWF0IjoxNjgyMjMyMTk1fQ.a-qLJZx37TtYVlLBLAFFnrc4hLQ3mCgLH3Az-rM26wY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"postId\": \"644524138eb80cc6afc903f0\",\n    \"text\": \"First comment added\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/events/add_comment",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "events", "add_comment"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWVlcnNhZ2FyIiwic3ViIjoiNjQ0NGQxOGQ3M2NmZDg5YzlkNzQwNmJmIiwiaWF0IjoxNjgyMjQ1OTIzfQ.Ad1QAqX8uhp5SBIQMG9WTH4X_I31df63WiKwEGjaU94",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"commentId\": \"644515b52c792a51d5094ab3\",\n    \"postId\": \"6444e8dd3a7a0df5eb3818b7\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/post/events/delete_comment",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["post", "events", "delete_comment"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tags",
+      "item": [
+        {
+          "name": "Get Post count by tag",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbWVlcnNhZ2FyIiwic3ViIjoiNjQ0NGQxOGQ3M2NmZDg5YzlkNzQwNmJmIiwiaWF0IjoxNjgyMjQ1OTIzfQ.Ad1QAqX8uhp5SBIQMG9WTH4X_I31df63WiKwEGjaU94",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tag/postCount/6444e8c02d87e96c51d6ffb9",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["tag", "postCount", "6444e8c02d87e96c51d6ffb9"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "sameer",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "helloworld1",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"sameer\",\n    \"password\": \"helloworld1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/users",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Data by Username",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbXNzYWdhciIsInN1YiI6IjY0NDRhNmEwZGJkZmNjNDA4ODhhNzcyYyIsImlhdCI6MTY4MjIyODY3M30.nSnVIDOdWsv07K5UQVODPQjIJHIgoh8mWYayEwYrRK8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/users/samssagar",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["users", "samssagar"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
